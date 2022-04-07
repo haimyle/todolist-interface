@@ -18,12 +18,21 @@ public class User {
         this.password = password;
     }
 
-    public int getId_user() {
-        return id_user;
+    public User(int idUser, String nom, String prenom, String email, String password, boolean estAmin) {
+        this.idUser = idUser;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+        this.isEstAdmin();
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setId_user(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getNom() {

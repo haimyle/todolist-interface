@@ -1,11 +1,12 @@
 package modele;
 
 public class User {
-    private int id_user;
+    private int idUser;
     private String nom;
     private String prenom;
     private String email;
     private String password;
+    private boolean estAdmin;
 
     public User() {
     }
@@ -55,5 +56,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEstAdmin() {
+        return estAdmin;
+    }
+
+    public void setEstAdmin(boolean estAdmin) {
+        this.estAdmin = estAdmin;
     }
 }

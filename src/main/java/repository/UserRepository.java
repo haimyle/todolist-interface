@@ -33,4 +33,28 @@ public class UserRepository {
         return user;
     }
 
+    public User update (User user) throws SQLException {
+        if(user.getIdUser()>0) {
+            String sql = "UPDATE user SET `nom`=?,`prenom`=?,`email`=?,`estAdmin`=? WHERE id_user=?";
+            PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+            req.setString(1, user.getNom());
+            req.setString(2, user.getPrenom());
+            req.setString(3, user.getEmail());
+            req.setBoolean(4, user.isEstAdmin());
+            req.setInt(5, user.getIdUser());
+            req.executeUpdate();
+        }
+        return user;
+    }
+
+    public void delete (User user) throws SQLException {
+        if (user.getIdUser() >0){
+            String sql = "DELETE FROM user where id_user=?;";
+            PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+            req.setInt(1, user.getIdUser());
+            req.executeUpdate();
+        }
+    }
+
+
 }

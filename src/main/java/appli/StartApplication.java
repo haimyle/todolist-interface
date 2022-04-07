@@ -16,9 +16,9 @@ public class StartApplication extends Application {
     public void start(Stage firstStage) throws IOException {
 
         stage = firstStage;
-        fxmlLoader = new FXMLLoader(StartApplication.class.getResource("/appli/welcome1.fxml"));
+        fxmlLoader = new FXMLLoader(StartApplication.class.getResource("/appli/accueil-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Bienvenue!");
+        stage.setTitle("To-Do List - Accueil");
         stage.setScene(scene);
         stage.show();
     }
@@ -56,12 +56,13 @@ public class StartApplication extends Application {
             System.err.println(String.format("Error: %s", e.getMessage()));
         }
     }
-    public static void changeScene(String fxml) {
+    public static void changeScene(String fxml, String title) {
         stage.close();
         try {
             fxmlLoader = new FXMLLoader(StartApplication.class.getResource(fxml+".fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
+            stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

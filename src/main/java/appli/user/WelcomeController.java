@@ -12,7 +12,9 @@ public class WelcomeController {
 
     @FXML
     void clickConnexion(ActionEvent event) {
-        StartApplication.changeScene("/appli/user/connexion2.fxml",new WelcomeController(),"Se Connecter");
+        StartApplication.changeScene("/appli/user/connexion-view.fxml",new ConnexionController(),"To-Do List - Connexion");
     }
+
+
 
 }

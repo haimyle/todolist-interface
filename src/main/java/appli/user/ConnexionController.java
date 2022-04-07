@@ -1,6 +1,7 @@
 package appli.user;
 
 import appli.StartApplication;
+import appli.todolist.AppController;
 import appli.todolist.ListController;
 import database.Bdd;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import modele.User;
+import repository.UserRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,31 +39,21 @@ public class ConnexionController {
 
     @FXML
     void clickBack(ActionEvent event) {
-        StartApplication.changeScene("/appli/welcome1.fxml");
+        StartApplication.changeScene("/appli/accueil-view.fxml", "To-Do List - Accueil");
     }
 
     @FXML
-    void clickConnexion(ActionEvent event) {
-        try
-        {   req = cnx.prepareStatement("SELECT * FROM user WHERE email=? and password=?");
-            req.setString(1, tfEmail.getText());
-            req.setString(2, tfPassword.getText());
-            res = req.executeQuery();
-            if(res.next()) {
-                User user = new User();
-                user.setId_user(res.getInt("id_user"));
-                user.setNom(res.getString("nom"));
-                user.setPrenom(res.getString("prenom"));
-                user.setEmail(res.getString("email"));
-                user.setPassword(res.getString("password"));
-                //StartApplication.changeScene("/appli/crud/user-view", new ListController()
-                        //user.getId_user(),user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword()));
-            }
-            else{
-                //lbMessage.setText("Erreur!");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+    void clickConnexion(ActionEvent event) throws Exception {
+        //StartApplication.changeScene("/appli/crud/user-view", new ListController()
+        //user.getId_user(),user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword()));
+        UserRepository userRepository = new UserRepository();
+
+        User user = userRepository.connexion(tfEmail.getText(),tfPassword.getText());
+        if (user.getEmail().isBlank() && user.getPassword().isBlank()){
+            lbMessage.setVisible(true);
+        }
+        else{
+            StartApplication.changeScene("/appli/crud/main-view", new AppController(), "To-Do List - Application");
         }
     }
 

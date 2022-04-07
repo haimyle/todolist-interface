@@ -14,12 +14,11 @@ public class UserRepository {
         this.cnx = new Bdd();
     }
 
-    public User connexion(String email, String password) {
+    public User connexion(String email, String password) throws Exception {
         User user = null;
-        String sql = "SELECT * FROM user WHERE email=? and password=md5(?)";
         PreparedStatement req;
         try {
-            req = cnx.getConnection().prepareStatement(sql);
+            req = Bdd.getConnection().prepareStatement("SELECT * FROM user WHERE email=? and password=md5(?)");
             req.setString(1, email);
             req.setString(2, password);
             ResultSet res = req.executeQuery();

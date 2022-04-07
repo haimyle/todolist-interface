@@ -18,13 +18,13 @@ public class User {
         this.password = password;
     }
 
-    public User(int idUser, String nom, String prenom, String email, String password, boolean estAmin) {
+    public User(int idUser, String nom, String prenom, String email, String password, boolean estAdmin) {
         this.idUser = idUser;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.password = password;
-        this.isEstAdmin();
+        this.estAdmin = estAdmin;
     }
 
     public int getIdUser() {

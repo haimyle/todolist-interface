@@ -1,11 +1,15 @@
 package modele;
 
-public class List {
+public class Liste {
     private int idListe;
     private String nomListe;
     private int refUser;
 
-    public List() {
+    public Liste() {
+    }
+
+    public Liste(int idListe) {
+        this.idListe = idListe;
     }
 
     public int getIdListe() {
@@ -30,5 +34,10 @@ public class List {
 
     public void setRefUser(int refUser) {
         this.refUser = refUser;
+    }
+
+    @Override
+    public String toString() {
+        return idListe + ". " + nomListe;
     }
 }

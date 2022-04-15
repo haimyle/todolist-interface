@@ -34,20 +34,25 @@ public class UserRepository {
     }
 
     public User connexion(String email, String password) {
-        User user = null;
-        String sql = "SELECT * FROM user WHERE email=? and password=md5(?)";
-        PreparedStatement req;
+        User user = new User();
         try {
-            req = cnx.getConnection().prepareStatement(sql);
+            PreparedStatement req = cnx.getConnection().prepareStatement("SELECT * FROM user WHERE email=? and password=?");
             req.setString(1, email);
             req.setString(2, password);
             ResultSet res = req.executeQuery();
-            if (res.next()) {
-                user = new User(res.getInt("id_user"), res.getString("nom"), res.getString("prenom"), res.getString("email"), res.getString("password"), res.getBoolean("estAdmin"));
+            if  (res.next()) {
+                user.setIdUser(res.getInt("id_user"));
+                user.setNom(res.getString("nom"));
+                user.setPrenom(res.getString("prenom"));
+                user.setEmail(res.getString("email"));
+                user.setPassword(res.getString("password"));
+                user.setEstAdmin(res.getBoolean("estAdmin"));
+                user = new User(user.getIdUser(),user.getNom(),user.getPrenom(),user.getEmail(), user.getPassword(), user.isEstAdmin());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(user);
 
         return user;
     }

@@ -74,4 +74,16 @@ public class User {
     public void setEstAdmin(boolean estAdmin) {
         this.estAdmin = estAdmin;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id :" + idUser +
+                ", Nom : '" + nom + '\'' +
+                ", Prenom : '" + prenom + '\'' +
+                ", Email : " + email + '\'' +
+                ", Password :'" + password + '\'' +
+                ", Admin :" + estAdmin +
+                '}';
+    }
 }

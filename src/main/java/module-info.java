@@ -15,4 +15,6 @@ module todolist.todolistinterface {
     exports appli;
     exports appli.user;
     opens appli.user to javafx.fxml;
+    exports appli.todolist;
+    opens appli.todolist to javafx.fxml;
 }

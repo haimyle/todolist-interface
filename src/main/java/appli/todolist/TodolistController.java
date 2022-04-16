@@ -29,6 +29,12 @@ public class TodolistController implements Initializable {
     private Button btnAddList;
 
     @FXML
+    private Button btnModifier;
+
+    @FXML
+    private Button btnSupprimer;
+
+    @FXML
     private Label lbArchives;
 
     @FXML
@@ -45,6 +51,13 @@ public class TodolistController implements Initializable {
     @FXML
     private ListView<Liste> lvTodolist;
 
+    @FXML
+    void modifier(ActionEvent event) {}
+
+    @FXML
+    void supprimer(ActionEvent event) {
+
+    }
     @FXML
     void addList(ActionEvent event) {
         StartApplication.changeScene("/appli/todolist/add-list-view.fxml", new AddListController(user),"To-Do List - Ajout");
@@ -80,9 +93,12 @@ public class TodolistController implements Initializable {
         System.out.println("Selected");
         this.selectedList = lvTodolist.getSelectionModel().getSelectedItem();
         if (selectedList != null){
-
+            btnModifier.setVisible(true);
+            btnSupprimer.setVisible(true);
+        }else{
+            btnModifier.setVisible(false);
+            btnSupprimer.setVisible(false);
         }
-
     }
 
     public TodolistController(User user) {
@@ -92,6 +108,8 @@ public class TodolistController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ListeRepository listeRepository = new ListeRepository();
+        this.btnSupprimer.setVisible(false);
+        this.btnModifier.setVisible(false);
         try {
             this.lvTodolist.getItems().addAll(listeRepository.showList(this.user));
             this.lvTodolist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Liste>() {

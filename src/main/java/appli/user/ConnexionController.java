@@ -1,9 +1,8 @@
 package appli.user;
 
 import appli.StartApplication;
-import appli.todolist.AppController;
-import appli.todolist.ListController;
-import database.Bdd;
+import appli.todolist.TodayController;
+import appli.todolist.TodolistController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,30 +11,43 @@ import javafx.scene.control.TextField;
 import modele.User;
 import repository.UserRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class ConnexionController {
-    Connection cnx = Bdd.getConnection();
-    PreparedStatement req;
-    ResultSet res;
+    private User user;
 
     @FXML
-    private Button btnConnexion;
+    private Button btnQuitter;
 
     @FXML
-    private Button btnBack;
+    private Button btnRetour;
 
     @FXML
-    private Label lbMessage;
+    private Button btnSeConnecter;
 
     @FXML
     private TextField tfEmail;
 
     @FXML
     private TextField tfPassword;
+
+    @FXML
+    private Label lbMessage;
+
+    public ConnexionController(User user) {
+        this.user = user;
+    }
+
+    public ConnexionController() {
+    }
+
+    @FXML
+    void clickQuitter(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clickRetour(ActionEvent event) {
+
+    }
 
     @FXML
     void clickBack(ActionEvent event) {
@@ -47,15 +59,13 @@ public class ConnexionController {
         //StartApplication.changeScene("/appli/crud/user-view", new ListController()
         //user.getId_user(),user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword()));
         UserRepository userRepository = new UserRepository();
-
-        User user = userRepository.connexion(tfEmail.getText(),tfPassword.getText());
-        if (user.getEmail().isBlank() && user.getPassword().isBlank()){
-            lbMessage.setVisible(true);
-        }
-        else{
-            StartApplication.changeScene("/appli/crud/main-view", new AppController(), "To-Do List - Application");
+        User user = userRepository.connexion(tfEmail.getText(), tfPassword.getText());
+        if (user != null) {
+            //StartApplication.changeScene("/appli/todolist/today-view.fxml", new TodayController(user),"To-Do List - Application");
+            StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
+        } else {
+            lbMessage.setText("Erreur");
         }
     }
-
-    public ConnexionController(){};
 }
+

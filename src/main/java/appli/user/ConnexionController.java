@@ -1,7 +1,6 @@
 package appli.user;
 
 import appli.StartApplication;
-import appli.todolist.TodayController;
 import appli.todolist.TodolistController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +60,7 @@ public class ConnexionController {
         UserRepository userRepository = new UserRepository();
         User user = userRepository.connexion(tfEmail.getText(), tfPassword.getText());
         if (user != null) {
-            //StartApplication.changeScene("/appli/todolist/today-view.fxml", new TodayController(user),"To-Do List - Application");
+            //StartApplication.changeScene("/appli/tache/today-view.fxml", new TodayController(user),"To-Do List - Application");
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
         } else {
             lbMessage.setText("Erreur");

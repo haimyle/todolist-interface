@@ -4,9 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class StartApplication extends Application {
     private static Stage stage;
@@ -68,6 +72,15 @@ public class StartApplication extends Application {
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));
         }
+    }
+
+    public static Optional<ButtonType> validationDialog(String titre, String message){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"titre alert");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(stage);
+        alert.getDialogPane().setContentText(message);
+        alert.getDialogPane().setHeaderText(titre);
+        return alert.showAndWait();
     }
 
 }

@@ -9,15 +9,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Liste;
 import modele.User;
 import repository.ListeRepository;
+import repository.TacheRepository;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TodolistController implements Initializable {
@@ -52,11 +55,24 @@ public class TodolistController implements Initializable {
     private ListView<Liste> lvTodolist;
 
     @FXML
-    void modifier(ActionEvent event) {}
+    void modifier(ActionEvent event) {
+        StartApplication.changeScene("/appli/todolist/update-list-view.fxml", new UpdateListController(this.selectedList, this.user),"To-do List - Modification");
+    }
 
     @FXML
-    void supprimer(ActionEvent event) {
+    void supprimer(ActionEvent event) throws SQLException {
+        Optional<ButtonType> resultat = StartApplication.validationDialog("Supression d'une liste",
+                "Toutes ses tâches seront supprimée. Êtes-vous sûr ?");
+        if (resultat.get() == ButtonType.OK){
+            ListeRepository listeRepository = new ListeRepository();
+            TacheRepository tacheRepository = new TacheRepository();
+            listeRepository.deleteList(this.selectedList);
+            /*tacheRepository.deleteTache(user,this.selectedList); *///TODO remove tasks in this list
+            lvTodolist.getItems().remove(this.selectedList);
 
+
+
+        }
     }
     @FXML
     void addList(ActionEvent event) {

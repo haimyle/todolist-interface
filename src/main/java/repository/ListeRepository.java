@@ -1,8 +1,6 @@
 package repository;
 
 import database.Bdd;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import modele.Liste;
 import modele.User;
 
@@ -54,5 +52,17 @@ public class ListeRepository {
 
         return listes;
     }
-
+    public void updateList (String nom, Liste list) throws SQLException {
+        String sql = "UPDATE liste SET nom_liste=? WHERE id_liste=?";
+        PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+        req.setString(1,nom);
+        req.setInt(2,list.getIdListe());
+        req.executeUpdate();
+    }
+    public void deleteList (Liste list) throws SQLException {
+        String sql = "DELETE FROM liste WHERE id_liste = ?";
+        PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+        req.setInt(1,list.getIdListe());
+        req.executeUpdate();
+    }
 }

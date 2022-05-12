@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import modele.User;
 import repository.UserRepository;
@@ -26,7 +27,7 @@ public class ConnexionController {
     private TextField tfEmail;
 
     @FXML
-    private TextField tfPassword;
+    private PasswordField pfPassword;
 
     @FXML
     private Label lbMessage;
@@ -58,7 +59,7 @@ public class ConnexionController {
         //StartApplication.changeScene("/appli/crud/user-view", new ListController()
         //user.getId_user(),user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword()));
         UserRepository userRepository = new UserRepository();
-        User user = userRepository.connexion(tfEmail.getText(), tfPassword.getText());
+        User user = userRepository.connexion(tfEmail.getText(), pfPassword.getText());
         if (user != null) {
             //StartApplication.changeScene("/appli/tache/today-view.fxml", new TodayController(user),"To-Do List - Application");
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");

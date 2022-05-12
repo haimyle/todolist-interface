@@ -1,6 +1,7 @@
 package appli.todolist;
 
 import appli.StartApplication;
+import appli.type.TypeViewController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,19 +39,20 @@ public class TodolistController implements Initializable {
     private Button btnSupprimer;
 
     @FXML
-    private Label lbArchives;
+    private Button btnArchives;
 
     @FXML
-    private Label lbCategories;
+    private Button btnAujourdhui;
 
     @FXML
-    private Label lbCorbeilles;
+    private Button btnCorbeille;
 
     @FXML
-    private Label lbInbox;
+    private Button btnListes;
 
     @FXML
-    private Label lbListes;
+    private Button btnType;
+
     @FXML
     private ListView<Liste> lvTodolist;
 
@@ -79,29 +81,30 @@ public class TodolistController implements Initializable {
         StartApplication.changeScene("/appli/todolist/add-list-view.fxml", new AddListController(user),"To-Do List - Ajout");
     }
 
+
     @FXML
-    void clickDisplayArchive(MouseEvent event) {
+    void clickArchives(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayInbox(MouseEvent event) {
+    void clickAujourdhui(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayList(MouseEvent event) {
+    void clickCorbeille(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayTrash(MouseEvent event) {
-
+    void clickListes(ActionEvent event) {
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
     }
 
     @FXML
-    void clickDisplayUpcoming(MouseEvent event) {
-
+    void clickType(ActionEvent event) {
+        StartApplication.changeScene("/appli/type/type-view.fxml", new TodolistController(user),"To-Do List - Application");
     }
 
     @FXML

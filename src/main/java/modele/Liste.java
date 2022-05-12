@@ -38,6 +38,6 @@ public class Liste {
 
     @Override
     public String toString() {
-        return idListe + ". " + nomListe;
+        return nomListe;
     }
 }

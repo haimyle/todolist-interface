@@ -14,7 +14,7 @@ import repository.UserRepository;
 
 import java.sql.SQLException;
 
-public class AddListController {
+public class CreateListController {
     private User user;
     @FXML
     private Button btnCancel;
@@ -82,7 +82,7 @@ public class AddListController {
     }
 
 
-    public AddListController(User user) {
+    public CreateListController(User user) {
         this.user = user;
     }
 }

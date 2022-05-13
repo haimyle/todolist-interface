@@ -1,58 +1,108 @@
 package appli.tache;
 
 import appli.StartApplication;
+import appli.todolist.TodolistController;
+import appli.type.CreateTypeController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import modele.Liste;
+import modele.Type;
 import modele.User;
+import repository.ListeRepository;
+import repository.TypeRepository;
 
-public class TodayController {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class CreateTacheController implements Initializable {
     private User user;
 
-    @FXML
-    private Label lbArchives;
+    ObservableList<Liste> listes;
+    ObservableList<Type> types;
 
     @FXML
-    private Label lbInbox;
+    private Button btnArchives;
 
     @FXML
-    private Label lbListes;
+    private Button btnCorbeille;
 
     @FXML
-    private Label lbTrash;
+    private Button btnEnregistrer;
 
     @FXML
-    private Label lbUpcoming;
+    private Button btnListes;
 
     @FXML
-    void clickDisplayArchive(MouseEvent event) {
+    private Button btnTaches;
+
+    @FXML
+    private Button btnType;
+
+    @FXML
+    private ComboBox<Liste> comboBoxListe = new ComboBox<>(listes);
+
+    @FXML
+    private ComboBox<Type> comboBoxType = new ComboBox<>(types);
+
+    @FXML
+    private DatePicker deadline;
+
+    @FXML
+    private TextField lbTitre;
+
+    @FXML
+    void clickArchives(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayInbox(MouseEvent event) {
+    void clickCorbeille(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayList(MouseEvent event) {
+    void clickEnregistrer(ActionEvent event) {
 
     }
 
     @FXML
-    void clickDisplayTrash(MouseEvent event) {
-
+    void clickListes(ActionEvent event) {
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
     }
 
     @FXML
-    void clickDisplayUpcoming(MouseEvent event) {
-
+    void clickTaches(ActionEvent event) {
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
     }
 
-    public TodayController(User user) {
+    @FXML
+    void clickType(ActionEvent event) {
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
+    }
+
+    public CreateTacheController(User user) {
         this.user = user;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ListeRepository listeRepository = new ListeRepository();
+        TypeRepository typeRepository = new TypeRepository();
+
+        try {
+            System.out.println(typeRepository.readType(this.user));
+            comboBoxType.getItems().addAll( FXCollections.observableArrayList(typeRepository.readType(user)));
+            comboBoxListe.getItems().addAll(FXCollections.observableArrayList(listeRepository.showList(user)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

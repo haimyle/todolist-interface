@@ -38,6 +38,10 @@ public class TypeViewController {
     @FXML
     private TreeView<?> treeViewType;
 
+    public TypeViewController(User user) {
+        this.user = user;
+    }
+
     @FXML
     void clickArchives(ActionEvent event) {
 

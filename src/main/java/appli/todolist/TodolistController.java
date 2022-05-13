@@ -1,7 +1,8 @@
 package appli.todolist;
 
 import appli.StartApplication;
-import appli.type.TypeViewController;
+import appli.tache.CreateTacheController;
+import appli.type.CreateTypeController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import modele.Liste;
@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 public class TodolistController implements Initializable {
     private User user;
     private Liste selectedList;
-    ObservableList<Liste> listes = FXCollections.observableArrayList();
 
     @FXML
     private Button btnAddList;
@@ -42,7 +41,7 @@ public class TodolistController implements Initializable {
     private Button btnArchives;
 
     @FXML
-    private Button btnAujourdhui;
+    private Button btnTache;
 
     @FXML
     private Button btnCorbeille;
@@ -69,7 +68,6 @@ public class TodolistController implements Initializable {
             ListeRepository listeRepository = new ListeRepository();
             TacheRepository tacheRepository = new TacheRepository();
             listeRepository.deleteList(this.selectedList);
-            /*tacheRepository.deleteTache(user,this.selectedList); *///TODO remove tasks in this list
             lvTodolist.getItems().remove(this.selectedList);
 
 
@@ -78,7 +76,7 @@ public class TodolistController implements Initializable {
     }
     @FXML
     void addList(ActionEvent event) {
-        StartApplication.changeScene("/appli/todolist/add-list-view.fxml", new AddListController(user),"To-Do List - Ajout");
+        StartApplication.changeScene("/appli/todolist/add-list-view.fxml", new CreateListController(this.user),"To-Do List - Ajout");
     }
 
 
@@ -88,8 +86,8 @@ public class TodolistController implements Initializable {
     }
 
     @FXML
-    void clickAujourdhui(ActionEvent event) {
-
+    void clickTache(ActionEvent event) {
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
     }
 
     @FXML
@@ -99,12 +97,12 @@ public class TodolistController implements Initializable {
 
     @FXML
     void clickListes(ActionEvent event) {
-        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
     }
 
     @FXML
-    void clickType(ActionEvent event) {
-        StartApplication.changeScene("/appli/type/type-view.fxml", new TodolistController(user),"To-Do List - Application");
+    void clickType(ActionEvent event) throws SQLException {
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
     @FXML

@@ -40,4 +40,9 @@ public class Type {
     public void setRefUser(int refUser) {
         this.refUser = refUser;
     }
+
+    @Override
+    public String toString() {
+        return nomType;
+    }
 }

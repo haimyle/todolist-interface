@@ -19,7 +19,7 @@ public class ListeRepository {
         this.cnx = new Bdd();
     }
 
-    public Liste addList(String titre, User user) throws SQLException {
+    public Liste createList(String titre, User user) throws SQLException {
         Liste liste = new Liste();
         String sql = "INSERT INTO liste (nom_liste, ref_user) VALUE(?,?)";
         PreparedStatement req = cnx.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -29,14 +29,14 @@ public class ListeRepository {
         ResultSet res = req.getGeneratedKeys();
         if (res.next()){
             liste.setIdListe(res.getInt(1));
-            System.out.println("Sucess");
+            System.out.println("Succès");
         }else {
             System.out.println("Erreur");
         }
         return liste;
     }
 
-    public ArrayList<Liste> showList(User user) throws SQLException {
+    public ArrayList<Liste> readList(User user) throws SQLException {
         ArrayList<Liste> listes = new ArrayList<Liste>();
         Liste liste;
         String sql = "SELECT * FROM liste WHERE ref_user =?";

@@ -1,6 +1,8 @@
 package appli.todolist;
 
 import appli.StartApplication;
+import appli.tache.CreateTacheController;
+import appli.type.CreateTypeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,64 +18,68 @@ import java.sql.SQLException;
 
 public class CreateListController {
     private User user;
-    @FXML
-    private Button btnCancel;
-
-    @FXML
-    private Button btnSave;
 
     @FXML
     private Label lbMessage;
 
     @FXML
-    private Label lbArchives;
+    private Button btnArchives;
 
     @FXML
-    private Label lbCategories;
+    private Button btnCancel;
 
     @FXML
-    private Label lbCorbeille;
+    private Button btnCorbeille;
 
     @FXML
-    private Label lbInbox;
+    private Button btnListes;
 
     @FXML
-    private Label lbListes;
+    private Button btnSave;
 
     @FXML
-    private Label lbToday;
+    private Button btnTaches;
+
+    @FXML
+    private Button btnType;
+
     @FXML
     private TextField tfNomListe;
 
     @FXML
+    void clickArchives(ActionEvent event) {
+
+    }
+
+    @FXML
     void clickCancel(ActionEvent event) {
-        StartApplication.changeScene("/appli/todolist/todolist-view.fxml",new TodolistController(user),"To-Do List - Listes");
-    }
-
-    @FXML
-    void clickShowArchive(MouseEvent event) {
 
     }
 
     @FXML
-    void clickShowCategories(MouseEvent event) {
+    void clickCorbeille(ActionEvent event) {
 
     }
 
     @FXML
-    void clickShowCorbeille(MouseEvent event) {
-
+    void clickListes(ActionEvent event) {
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
     }
 
     @FXML
-    void clickshowListes(MouseEvent event) {
+    void clickTaches(ActionEvent event) {
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
+    }
 
+    @FXML
+    void clickType(ActionEvent event) {
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
     @FXML
     void clickSave(ActionEvent event) throws SQLException {
         ListeRepository listeRepository = new ListeRepository();
-        Liste liste = listeRepository.addList(tfNomListe.getText(),user);
+        Liste liste = listeRepository.createList(tfNomListe.getText(),user);
         if (liste != null) {
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user), "To-Do List - Listes");
         } else {

@@ -13,13 +13,19 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import modele.Liste;
+import modele.Tache;
 import modele.Type;
 import modele.User;
 import repository.ListeRepository;
+import repository.TacheRepository;
 import repository.TypeRepository;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 public class CreateTacheController implements Initializable {
@@ -56,7 +62,7 @@ public class CreateTacheController implements Initializable {
     private DatePicker deadline;
 
     @FXML
-    private TextField lbTitre;
+    private TextField tfTitre;
 
     @FXML
     void clickArchives(ActionEvent event) {
@@ -69,8 +75,17 @@ public class CreateTacheController implements Initializable {
     }
 
     @FXML
-    void clickEnregistrer(ActionEvent event) {
-
+    void clickEnregistrer(ActionEvent event) throws ParseException, SQLException {
+        TacheRepository tacheRepository = new TacheRepository();
+        Type type = new Type();
+        java.util.Date date = java.util.Date.from(deadline.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        Tache tache = tacheRepository.createTache(tfTitre.getText(),sqlDate,comboBoxType.getValue().getIdType(),comboBoxListe.getValue().getIdListe());
+        if (tache != null) {
+            System.out.println("Enregistrée dans la BDD");
+        } else {
+            System.out.println("Erreur");
+        }
     }
 
     @FXML
@@ -95,12 +110,17 @@ public class CreateTacheController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ListeRepository listeRepository = new ListeRepository();
-        TypeRepository typeRepository = new TypeRepository();
+        TypeRepository typeRepository = null;
+        try {
+            typeRepository = new TypeRepository();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         try {
             System.out.println(typeRepository.readType(this.user));
             comboBoxType.getItems().addAll( FXCollections.observableArrayList(typeRepository.readType(user)));
-            comboBoxListe.getItems().addAll(FXCollections.observableArrayList(listeRepository.showList(user)));
+            comboBoxListe.getItems().addAll(FXCollections.observableArrayList(listeRepository.readList(user)));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -56,12 +56,9 @@ public class ConnexionController {
 
     @FXML
     void clickConnexion(ActionEvent event) throws Exception {
-        //StartApplication.changeScene("/appli/crud/user-view", new ListController()
-        //user.getId_user(),user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword()));
         UserRepository userRepository = new UserRepository();
         User user = userRepository.connexion(tfEmail.getText(), pfPassword.getText());
         if (user != null) {
-            //StartApplication.changeScene("/appli/tache/today-view.fxml", new TodayController(user),"To-Do List - Application");
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
         } else {
             lbMessage.setText("Erreur");

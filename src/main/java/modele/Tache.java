@@ -60,4 +60,9 @@ public class Tache {
     public void setRefListe(int refListe) {
         this.refListe = refListe;
     }
+
+    @Override
+    public String toString() {
+        return idTache + " . " + nomTache + " (deadline := " + deadline + " )";
+    }
 }

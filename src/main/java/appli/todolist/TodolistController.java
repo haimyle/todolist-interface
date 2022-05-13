@@ -5,8 +5,6 @@ import appli.tache.CreateTacheController;
 import appli.type.CreateTypeController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,7 +74,7 @@ public class TodolistController implements Initializable {
     }
     @FXML
     void addList(ActionEvent event) {
-        StartApplication.changeScene("/appli/todolist/add-list-view.fxml", new CreateListController(this.user),"To-Do List - Ajout");
+        StartApplication.changeScene("/appli/todolist/create-list-view.fxml", new CreateListController(this.user),"To-Do List - Ajout");
     }
 
 
@@ -128,7 +126,7 @@ public class TodolistController implements Initializable {
         this.btnSupprimer.setVisible(false);
         this.btnModifier.setVisible(false);
         try {
-            this.lvTodolist.getItems().addAll(listeRepository.showList(this.user));
+            this.lvTodolist.getItems().addAll(listeRepository.readList(this.user));
             this.lvTodolist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Liste>() {
                 @Override
                 public void changed(ObservableValue<? extends Liste> observableValue, Liste liste, Liste t1) {

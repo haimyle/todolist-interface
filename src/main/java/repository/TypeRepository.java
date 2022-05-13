@@ -14,7 +14,7 @@ public class TypeRepository {
     private Bdd cnx;
     private Type type;
 
-    public TypeRepository() {
+    public TypeRepository() throws SQLException {
         this.cnx = new Bdd();
     }
 
@@ -77,4 +77,14 @@ public class TypeRepository {
         req.executeUpdate();
     }
     public void deleteType(){}
+    public int getIdType (String nom_type) throws SQLException {
+        Type type = new Type();
+        PreparedStatement req = cnx.getConnection().prepareStatement("SELECT * FROM type WHERE nom_type=?");
+        req.setString(1, nom_type);
+        ResultSet res = req.executeQuery();
+        if (res.next()) {
+            type.setIdType(res.getInt("id_type"));
+        }
+        return type.getIdType();
+    }
 }

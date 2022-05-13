@@ -57,6 +57,7 @@ public class StartApplication extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
             System.err.println(String.format("Error: %s", e.getMessage()));
         }
     }

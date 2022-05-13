@@ -95,7 +95,12 @@ public class CreateTypeController implements Initializable {
     private ComboBox<Type> comboBoxAttacher = new ComboBox<>(types);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        TypeRepository typeRepository = new TypeRepository();
+        TypeRepository typeRepository = null;
+        try {
+            typeRepository = new TypeRepository();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
             comboBoxAttacher.getItems().addAll(FXCollections.observableArrayList(typeRepository.readType(this.user)));
         } catch (SQLException e) {

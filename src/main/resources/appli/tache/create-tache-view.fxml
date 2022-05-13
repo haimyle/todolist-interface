@@ -47,11 +47,11 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="194.0" style="-fx-background-color: transparent;" text="Tâches" />
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: transparent;" text="Listes" />
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Catégories" />
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent;" text="Archives" />
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: transparent;" text="Corbeille" />
+                        <Button fx:id="btnTaches" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickTaches" prefHeight="25.0" prefWidth="194.0" style="-fx-background-color: transparent;" text="Tâches" />
+                        <Button fx:id="btnListes" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickListes" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: transparent;" text="Listes" />
+                        <Button fx:id="btnType" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickType" prefHeight="25.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Catégories" />
+                        <Button fx:id="btnArchives" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickArchives" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent;" text="Archives" />
+                        <Button fx:id="btnCorbeille" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickCorbeille" prefHeight="25.0" prefWidth="195.0" style="-fx-background-color: transparent;" text="Corbeille" />
                      </children>
                   </VBox>
                </children>
@@ -69,7 +69,7 @@
                               <Insets left="105.0" right="105.0" />
                            </VBox.margin>
                         </TextField>
-                        <ComboBox fx:id="comboBoxListe" prefHeight="25.0" prefWidth="227.0" promptText="Liste" style="-fx-background-color: ưhite;">
+                        <ComboBox fx:id="comboBoxListe" prefHeight="25.0" prefWidth="227.0" promptText="Liste">
                            <VBox.margin>
                               <Insets left="105.0" right="105.0" />
                            </VBox.margin>
@@ -86,7 +86,7 @@
                         </DatePicker>
                      </children>
                   </VBox>
-                  <Button fx:id="lbEnregistrer" layoutX="178.0" layoutY="236.0" mnemonicParsing="false" text="Enregistrer" />
+                  <Button fx:id="btnEnregistrer" layoutX="178.0" layoutY="236.0" mnemonicParsing="false" onAction="#clickEnregistrer" text="Enregistrer" />
                </children></AnchorPane>
         </items>
       </SplitPane>

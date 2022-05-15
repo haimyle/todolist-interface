@@ -21,4 +21,7 @@ module todolist.todolistinterface {
     opens appli.tache to javafx.fxml;
     exports appli.type;
     opens appli.type to javafx.fxml;
+    exports modele;
+    opens modele to javafx.fxml;
+
 }

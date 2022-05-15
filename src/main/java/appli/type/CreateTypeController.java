@@ -85,7 +85,12 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void onActionCompteModifier(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML

@@ -84,6 +84,44 @@ public class UserRepository {
         }
     }
 
+    public User sauvegarder(User user) throws SQLException {
+        String sql;
+        PreparedStatement pstm;
+//Update
+        if(user.getIdUser()>0) {
+            sql = "UPDATE user SET `nom`=?,`prenom`=?,`mail`=?,`est_admin`=? WHERE id_user=?";
+            pstm = cnx.getConnection().prepareStatement(sql);
+            pstm.setString(1, user.getNom());
+            pstm.setString(2, user.getPrenom());
+            pstm.setString(3, user.getMail());
+            pstm.setBoolean(4, user.isEstAdmin());
+            pstm.setInt(5, user.getIdUser());
+            pstm.executeUpdate();
+
+        }
+//insert
+        else {
+            sql = "INSERT INTO user ( `nom`, `prenom`, `mail`,`mdp`,`est_admin`) VALUES (?,?,?,md5(?),?)";
+
+            pstm = cnx.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1, user.getNom());
+            pstm.setString(2, user.getPrenom());
+            pstm.setString(3, user.getMail());
+            pstm.setString(4, user.getMdp());
+            pstm.setBoolean(5, user.isEstAdmin());
+            pstm.executeUpdate();
+            ResultSet rs = pstm.getGeneratedKeys();
+            if(rs.next())
+            {
+                int last_inserted_id = rs.getInt(1);
+                user.setIdUser(last_inserted_id);
+            }
+
+        }
+
+        return user;
+    }
+
     public ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
         User user;

@@ -76,7 +76,12 @@ public class TypeRepository {
         //req.setInt(2,list.getIdListe());
         req.executeUpdate();
     }
-    public void deleteType(){}
+    public void deleteType(int id_type) throws SQLException {
+        String sql = "DELETE FROM type WHERE id_type = ?";
+        PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+        req.setInt(1,type.getIdType());
+        req.executeUpdate();
+    }
     public int getIdType (String nom_type) throws SQLException {
         Type type = new Type();
         PreparedStatement req = cnx.getConnection().prepareStatement("SELECT * FROM type WHERE nom_type=?");

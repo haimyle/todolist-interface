@@ -27,6 +27,14 @@ public class User {
         this.estAdmin = estAdmin;
     }
 
+    public User(String nom, String prenom, String mail, String mdp,boolean estAdmin) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.mdp = mdp;
+        this.estAdmin = estAdmin;
+    }
+
     public int getIdUser() {
         return idUser;
     }

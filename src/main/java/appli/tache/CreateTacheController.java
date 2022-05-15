@@ -3,6 +3,7 @@ package appli.tache;
 import appli.StartApplication;
 import appli.todolist.TodolistController;
 import appli.type.CreateTypeController;
+import appli.user.AdminController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +31,41 @@ public class CreateTacheController implements Initializable {
 
     ObservableList<Liste> listes;
     ObservableList<Type> types;
+
+    @FXML
+    void onActionCompteAdmin(ActionEvent event) {
+        System.out.println(user.toString());
+        if(this.user.isEstAdmin()){
+            StartApplication.changeScene("/appli/user/admin-view.fxml", new AdminController(user), "To-Do List - Admin");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Admin");
+            alert.setHeaderText("Vous n'avez pas les permissions nécessaires !");
+            alert.setContentText(this.user.getPrenom()+" vous n'êtes pas administrateur, vous ne pouvez pas gérer les utilisateurs.");
+            alert.show();
+        }
+    }
+
+    @FXML
+    void onActionCompteModifier(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
+    }
+
+    @FXML
+    void onActionToDoListAPropos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListDocumentation(ActionEvent event) {
+
+    }
 
     @FXML
     private Label lblAdded;

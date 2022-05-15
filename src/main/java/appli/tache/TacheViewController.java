@@ -2,6 +2,8 @@ package appli.tache;
 
 
 import appli.StartApplication;
+import appli.todolist.TodolistController;
+import appli.type.CreateTypeController;
 import appli.user.AdminController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -32,6 +34,8 @@ public class TacheViewController implements Initializable {
         this.user = user;
         this.liste = liste;
     }
+
+
 
     @FXML
     private Button btnArchives;
@@ -78,16 +82,18 @@ public class TacheViewController implements Initializable {
     @FXML
     private Label lbNomListe;
 
+
+    @FXML
     void onSelectedRow(MouseEvent event) {
         System.out.println("Selected");
         this.selectedTache = tbTache.getSelectionModel().getSelectedItem();
         if (selectedTache != null){
+            System.out.println("dd");
             btnModifier.setVisible(true);
             btnSupprimer.setVisible(true);
             btnTerminer.setVisible(true);
         }
     }
-
 
     @FXML
     void clickArchives(ActionEvent event) {
@@ -101,12 +107,12 @@ public class TacheViewController implements Initializable {
 
     @FXML
     void clickCreateTache(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML
     void clickListes(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
     }
 
     @FXML
@@ -131,7 +137,7 @@ public class TacheViewController implements Initializable {
 
     @FXML
     void clickType(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
     @FXML
@@ -153,7 +159,12 @@ public class TacheViewController implements Initializable {
 
     @FXML
     void onActionCompteModifier(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML

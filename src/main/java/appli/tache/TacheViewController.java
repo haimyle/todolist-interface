@@ -3,24 +3,31 @@ package appli.tache;
 
 import appli.StartApplication;
 import appli.user.AdminController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modele.Liste;
 import modele.Tache;
 import modele.User;
+import repository.TacheRepository;
 
+import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class TacheViewController {
-
-    public TacheViewController(User user) {
-        this.user = user;
-    }
-
+public class TacheViewController implements Initializable {
     private User user;
+    private Liste liste;
+
+    public TacheViewController(User user, Liste liste) {
+        this.user = user;
+        this.liste = liste;
+    }
 
     @FXML
     private Button btnArchives;
@@ -44,6 +51,9 @@ public class TacheViewController {
     private Button btnTache;
 
     @FXML
+    private Button btnTerminer;
+
+    @FXML
     private Button btnType;
 
     @FXML
@@ -56,7 +66,10 @@ public class TacheViewController {
     @FXML
     private TableColumn<Tache, Integer> colType;
 
+    @FXML
+    private TableView<Tache> tbTache;
 
+    ObservableList<Tache> observableList = FXCollections.observableArrayList();
 
     @FXML
     private Label lbNomListe;
@@ -98,6 +111,11 @@ public class TacheViewController {
     }
 
     @FXML
+    void clickTerminer(ActionEvent event) {
+
+    }
+
+    @FXML
     void clickType(ActionEvent event) {
 
     }
@@ -135,5 +153,26 @@ public class TacheViewController {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TacheRepository tacheRepository = new TacheRepository();
+        this.btnModifier.setVisible(false);
+        this.btnSupprimer.setVisible(false);
+        this.btnTerminer.setVisible(false);
+
+        try {
+            observableList.addAll(tacheRepository.readTache(this.liste));
+            System.out.println(observableList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        colTache.setCellValueFactory(new PropertyValueFactory<Tache,String>("nom_tache"));
+        colDeadline.setCellValueFactory(new PropertyValueFactory<Tache,Date>("deadline"));
+        colType.setCellValueFactory(new PropertyValueFactory<Tache,Integer>("ref_type"));
+        tbTache.setItems(observableList);
+
+
+    }
 }
 

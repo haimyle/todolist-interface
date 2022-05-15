@@ -1,6 +1,7 @@
 package appli.todolist;
 
 import appli.StartApplication;
+import appli.tache.TacheViewController;
 import appli.type.TypeViewController;
 import appli.user.AdminController;
 import appli.tache.CreateTacheController;
@@ -37,6 +38,9 @@ public class TodolistController implements Initializable {
 
     @FXML
     private Button btnArchives;
+
+    @FXML
+    private Button btnConsulter;
 
     @FXML
     private Button btnTache;
@@ -114,6 +118,12 @@ public class TodolistController implements Initializable {
     }
 
     @FXML
+    void clickConsulter(ActionEvent event) {
+        System.out.println(this.selectedList.getIdListe());
+        StartApplication.changeScene("/appli/tache/tache-view.fxml", new TacheViewController(this.user, this.selectedList), "To-Do List - Taches");
+    }
+
+    @FXML
     void clickTache(ActionEvent event) {
         StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
     }
@@ -140,9 +150,7 @@ public class TodolistController implements Initializable {
         if (selectedList != null){
             btnModifier.setVisible(true);
             btnSupprimer.setVisible(true);
-        }else{
-            btnModifier.setVisible(false);
-            btnSupprimer.setVisible(false);
+            btnConsulter.setVisible(true);
         }
     }
 
@@ -153,6 +161,7 @@ public class TodolistController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ListeRepository listeRepository = new ListeRepository();
+        this.btnConsulter.setVisible(false);
         this.btnSupprimer.setVisible(false);
         this.btnModifier.setVisible(false);
         try {

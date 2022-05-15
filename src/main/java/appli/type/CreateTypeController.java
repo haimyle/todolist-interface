@@ -3,15 +3,13 @@ package appli.type;
 import appli.StartApplication;
 import appli.tache.CreateTacheController;
 import appli.todolist.TodolistController;
+import appli.user.AdminController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-        import javafx.scene.control.ComboBox;
-        import javafx.scene.control.Label;
-        import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import modele.Type;
 import modele.User;
 import repository.TypeRepository;
@@ -67,6 +65,36 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void clickCorbeille(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionCompteAdmin(ActionEvent event) {
+        System.out.println(user.toString());
+        if(this.user.isEstAdmin()){
+            StartApplication.changeScene("/appli/user/admin-view.fxml", new AdminController(user), "To-Do List - Admin");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Admin");
+            alert.setHeaderText("Vous n'avez pas les permissions nécessaires !");
+            alert.setContentText(this.user.getPrenom()+" vous n'êtes pas administrateur, vous ne pouvez pas gérer les utilisateurs.");
+            alert.show();
+        }
+    }
+
+    @FXML
+    void onActionCompteModifier(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListAPropos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListDocumentation(ActionEvent event) {
 
     }
 

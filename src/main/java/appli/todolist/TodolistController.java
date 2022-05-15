@@ -148,6 +148,7 @@ public class TodolistController implements Initializable {
         StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
+
     @FXML
     void onSelectedRow(MouseEvent event) {
         System.out.println("Selected");

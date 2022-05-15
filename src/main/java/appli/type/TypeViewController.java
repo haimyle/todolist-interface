@@ -1,6 +1,8 @@
 package appli.type;
 
 import appli.StartApplication;
+import appli.tache.CreateTacheController;
+import appli.todolist.TodolistController;
 import appli.user.AdminController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,27 +51,11 @@ public class TypeViewController implements Initializable {
     @FXML
     private Button btnUpdate;
 
-    @FXML
-    private TableColumn<Type, Integer> colParent;
+    ObservableList <Type>types;
 
     @FXML
-    private TableColumn<Type, String> colType;
+    private ComboBox<Type> comboBoxAttacher = new ComboBox<>(types);
 
-    @FXML
-    private TableView<Type> tbType;
-    private Type selectedType;
-
-    @FXML
-    void onSelectedRow(MouseEvent event) {
-        System.out.println("Selected");
-        this.selectedType = tbType.getSelectionModel().getSelectedItem();
-        if (selectedType != null){
-            System.out.println(this.selectedType);
-            btnDelete.setVisible(true);
-        }
-    }
-
-    ObservableList<Type> observableList = FXCollections.observableArrayList();
 
     public TypeViewController(User user) {
         this.user = user;
@@ -112,48 +98,47 @@ public class TypeViewController implements Initializable {
 
     @FXML
     void clickArchives(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
     void clickTaches(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickAujourdhui(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML
     void clickCorbeille(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
     void clickListes(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
     }
 
     @FXML
-    void clickType(ActionEvent event) {
-
+    void clickType(ActionEvent event) throws SQLException {
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
+
 
     @FXML
-    void createType(ActionEvent event) {
-
+    void deleteType(ActionEvent event) throws SQLException {
+        TypeRepository typee = new TypeRepository();
+        typee.deleteType(comboBoxAttacher.getValue().getIdType());
+        StartApplication.changeScene("/appli/type/type-view.fxml", new TypeViewController(this.user),"To-Do List - Supprimer une catégorie");
     }
 
-    @FXML
-    void deleteType(ActionEvent event) {
-
-    }
-
-    @FXML
-    void updateType(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -163,17 +148,13 @@ public class TypeViewController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.btnDelete.setVisible(false);
         try {
-            observableList.addAll(typeRepository.readType(this.user));
+            comboBoxAttacher.getItems().addAll(FXCollections.observableArrayList(typeRepository.readType(this.user)));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(observableList);
 
-        colType.setCellValueFactory(new PropertyValueFactory<Type, String>("nomType"));
-        colParent.setCellValueFactory(new PropertyValueFactory<Type, Integer>("refType"));
-        tbType.getItems().addAll(observableList);
+
     }
 }
 

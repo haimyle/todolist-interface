@@ -115,12 +115,17 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void clickTaches(ActionEvent event) {
-        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML
     void clickType(ActionEvent event) {
         StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
+    }
+
+    @FXML
+    void clickRead(ActionEvent event) {
+        StartApplication.changeScene("/appli/type/type-view.fxml", new TypeViewController(this.user),"To-Do List - Voir les catégories");
     }
 
     ObservableList <Type>types;

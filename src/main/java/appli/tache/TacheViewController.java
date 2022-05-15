@@ -88,7 +88,7 @@ public class TacheViewController implements Initializable {
         System.out.println("Selected");
         this.selectedTache = tbTache.getSelectionModel().getSelectedItem();
         if (selectedTache != null){
-            System.out.println("dd");
+            System.out.println(this.selectedTache);
             btnModifier.setVisible(true);
             btnSupprimer.setVisible(true);
             btnTerminer.setVisible(true);

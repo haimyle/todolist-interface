@@ -2,15 +2,26 @@ package appli.type;
 
 import appli.StartApplication;
 import appli.user.AdminController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TreeView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import modele.Tache;
 import modele.Type;
 import modele.User;
+import repository.TacheRepository;
+import repository.TypeRepository;
 
-public class TypeViewController {
+import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class TypeViewController implements Initializable {
     private User user;
     private Type type;
 
@@ -39,7 +50,26 @@ public class TypeViewController {
     private Button btnUpdate;
 
     @FXML
-    private TreeView<?> treeViewType;
+    private TableColumn<Type, Integer> colParent;
+
+    @FXML
+    private TableColumn<Type, String> colType;
+
+    @FXML
+    private TableView<Type> tbType;
+    private Type selectedType;
+
+    @FXML
+    void onSelectedRow(MouseEvent event) {
+        System.out.println("Selected");
+        this.selectedType = tbType.getSelectionModel().getSelectedItem();
+        if (selectedType != null){
+            System.out.println(this.selectedType);
+            btnDelete.setVisible(true);
+        }
+    }
+
+    ObservableList<Type> observableList = FXCollections.observableArrayList();
 
     public TypeViewController(User user) {
         this.user = user;
@@ -86,6 +116,11 @@ public class TypeViewController {
     }
 
     @FXML
+    void clickTaches(ActionEvent event) {
+
+    }
+
+    @FXML
     void clickAujourdhui(ActionEvent event) {
 
     }
@@ -120,5 +155,26 @@ public class TypeViewController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TypeRepository typeRepository = null;
+        try {
+            typeRepository = new TypeRepository();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        this.btnDelete.setVisible(false);
+
+        try {
+            observableList.addAll(typeRepository.readType(user));
+            System.out.println(observableList);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        colType.setCellValueFactory(new PropertyValueFactory<Type, String>("nomType"));
+        colParent.setCellValueFactory(new PropertyValueFactory<Type, Integer>("refType"));
+        tbType.getItems().addAll(observableList);
+    }
 }
 

@@ -59,6 +59,7 @@
                         <Button fx:id="btnSave" layoutX="173.0" layoutY="169.0" mnemonicParsing="false" onAction="#clickSave" text="Sauvegarder" />
                   <ComboBox fx:id="comboBoxAttacher" layoutX="105.0" layoutY="105.0" prefHeight="25.0" prefWidth="183.0" promptText="Attachée à" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="105.0" />
                   <Label fx:id="lbMessage" alignment="CENTER" layoutX="-1.0" layoutY="140.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+                  <Button layoutX="134.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickRead" prefHeight="25.0" prefWidth="161.0" text="Voir toutes les catégories" />
                     </children></AnchorPane>
             </items>
         </SplitPane>

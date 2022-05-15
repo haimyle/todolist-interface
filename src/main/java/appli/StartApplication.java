@@ -16,6 +16,7 @@ public class StartApplication extends Application {
     private static Stage stage;
     private static FXMLLoader fxmlLoader;
 
+
     @Override
     public void start(Stage firstStage) throws IOException {
 
@@ -23,6 +24,7 @@ public class StartApplication extends Application {
         fxmlLoader = new FXMLLoader(StartApplication.class.getResource("/appli/accueil-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("To-Do List - Accueil");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
@@ -38,6 +40,7 @@ public class StartApplication extends Application {
             Parent root = fxmlLoader.  load();
             Stage stage = new Stage();
             stage.setTitle(title);
+            stage.setResizable(false);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -55,6 +58,7 @@ public class StartApplication extends Application {
             Scene scene = new Scene(root);
             stage.setTitle(title);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,6 +72,7 @@ public class StartApplication extends Application {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setTitle(title);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -83,5 +88,4 @@ public class StartApplication extends Application {
         alert.getDialogPane().setHeaderText(titre);
         return alert.showAndWait();
     }
-
 }

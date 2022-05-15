@@ -11,6 +11,11 @@ public class AccueilController {
     private Button btnSeConnecter;
 
     @FXML
+    void btnQuitOnAction(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
     void clickConnexion(ActionEvent event) {
         StartApplication.changeScene("/appli/user/connexion-view.fxml",new ConnexionController(),"To-Do List - Connexion");
     }

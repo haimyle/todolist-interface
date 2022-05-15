@@ -1,6 +1,8 @@
 package appli.todolist;
 
 import appli.StartApplication;
+import appli.type.TypeViewController;
+import appli.user.AdminController;
 import appli.tache.CreateTacheController;
 import appli.type.CreateTypeController;
 import javafx.beans.value.ChangeListener;
@@ -8,9 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import modele.Liste;
 import modele.User;
@@ -72,6 +72,22 @@ public class TodolistController implements Initializable {
 
         }
     }
+
+    @FXML
+    void onActionCompteAdmin(ActionEvent event) {
+        System.out.println(user.toString());
+        if(this.user.isEstAdmin()){
+            StartApplication.changeScene("/appli/user/admin-view.fxml", new AdminController(user), "To-Do List - Admin");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Admin");
+            alert.setHeaderText("Vous n'avez pas les permissions nécessaires !");
+            alert.setContentText(this.user.getPrenom()+" vous n'êtes pas administrateur, vous ne pouvez pas gérer les utilisateurs.");
+            alert.show();
+        }
+    }
+
     @FXML
     void addList(ActionEvent event) {
         StartApplication.changeScene("/appli/todolist/create-list-view.fxml", new CreateListController(this.user),"To-Do List - Ajout");

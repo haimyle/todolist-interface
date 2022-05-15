@@ -66,7 +66,7 @@ public class UpdateListController implements Initializable {
         if (this.liste != null) {
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user), "To-Do List - Listes");
         } else {
-            lbMessage.setText("Erreur");
+            lbMessage.setText("Erreur.");
         }
     }
 

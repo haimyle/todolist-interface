@@ -41,17 +41,12 @@ public class ConnexionController {
 
     @FXML
     void clickQuitter(ActionEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
     void clickRetour(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickBack(ActionEvent event) {
-        StartApplication.changeScene("/appli/accueil-view.fxml", "To-Do List - Accueil");
+        StartApplication.changeScene("/appli/accueil-view","To-Do List - Accueil");
     }
 
     @FXML

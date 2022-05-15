@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="331.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="291.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="138.0" layoutY="41.0" text="Connexion">
          <font>
@@ -26,17 +26,17 @@
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="pfPassword" layoutX="69.0" layoutY="132.0" prefHeight="33.0" prefWidth="215.0" promptText="Mot de passe">
+      <PasswordField fx:id="pfPassword" layoutX="69.0" layoutY="132.0" prefHeight="39.0" prefWidth="224.0" promptText="Mot de passe">
          <font>
             <Font name="Berlin Sans FB" size="18.0" />
          </font>
       </PasswordField>
-      <Button fx:id="btnQuitter" layoutX="277.0" layoutY="264.0" mnemonicParsing="false" onAction="#clickQuitter" text="Quitter">
+      <Button fx:id="btnQuitter" layoutX="276.0" layoutY="241.0" mnemonicParsing="false" onAction="#clickQuitter" text="Quitter">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Button>
-      <Label layoutX="14.0" layoutY="309.0" text="Ce logiciel vous est proposé par ...">
+      <Label layoutX="48.0" layoutY="274.0" text="Ce logiciel vous est proposé par Killian TRAN &amp; Hai-My LE">
          <font>
             <Font size="10.0" />
          </font>
@@ -46,7 +46,7 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnRetour" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" onAction="#clickRetour" text="Retour">
+      <Button fx:id="btnRetour" layoutX="14.0" layoutY="241.0" mnemonicParsing="false" onAction="#clickRetour" text="Retour">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font>

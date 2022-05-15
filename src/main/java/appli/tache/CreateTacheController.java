@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import modele.Liste;
 import modele.Tache;
 import modele.Type;
@@ -33,6 +30,12 @@ public class CreateTacheController implements Initializable {
 
     ObservableList<Liste> listes;
     ObservableList<Type> types;
+
+    @FXML
+    private Label lblAdded;
+
+    @FXML
+    private Label lblError;
 
     @FXML
     private Button btnArchives;
@@ -76,15 +79,24 @@ public class CreateTacheController implements Initializable {
 
     @FXML
     void clickEnregistrer(ActionEvent event) throws ParseException, SQLException {
+        Tache tache = null;
         TacheRepository tacheRepository = new TacheRepository();
         Type type = new Type();
         java.util.Date date = java.util.Date.from(deadline.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        Tache tache = tacheRepository.createTache(tfTitre.getText(),sqlDate,comboBoxType.getValue().getIdType(),comboBoxListe.getValue().getIdListe());
+        if (!tfTitre.getText().isBlank()){
+            tache = tacheRepository.createTache(tfTitre.getText(),sqlDate,comboBoxType.getValue().getIdType(),comboBoxListe.getValue().getIdListe());
+        }
         if (tache != null) {
             System.out.println("Enregistrée dans la BDD");
+            tfTitre.clear();
+            lblAdded.setVisible(true);
+            lblError.setVisible(false);
         } else {
             System.out.println("Erreur");
+            tfTitre.clear();
+            lblAdded.setVisible(false);
+            lblError.setVisible(true);
         }
     }
 
@@ -95,7 +107,7 @@ public class CreateTacheController implements Initializable {
 
     @FXML
     void clickTaches(ActionEvent event) {
-        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML

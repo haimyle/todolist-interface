@@ -13,31 +13,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Compte">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Modifier" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                    </items>
-                </Menu>
-            </menus>
+         <menus>
+            <Menu mnemonicParsing="false" text="To-Do List">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onActionToDoListAPropos" text="À propos" />
+                  <MenuItem mnemonicParsing="false" onAction="#onActionToDoListDocumentation" text="Documentation" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Compte">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onActionCompteModifier" text="Modifier" />
+                  <MenuItem mnemonicParsing="false" onAction="#onActionCompteAdmin" text="Admin" />
+               </items>
+            </Menu>
+         </menus>
         </MenuBar>
         <SplitPane dividerPositions="0.2751116071428572" layoutY="61.0" prefHeight="340.0" prefWidth="600.0">
             <items>
@@ -52,7 +44,6 @@
                                 <Label fx:id="lbArchives" onMouseClicked="#clickShowArchive" text="Archives" />
                                 <Label fx:id="lbCorbeille" onMouseClicked="#clickShowCorbeille" text="Corbeille" />
                                 <Accordion />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: red; -fx-border-color: blue; -fx-border-radius: 10;" text="Button" />
                             </children>
                         </VBox>
                     </children>

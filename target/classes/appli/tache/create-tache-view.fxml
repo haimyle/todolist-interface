@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
         <menus>
@@ -87,6 +87,16 @@
                      </children>
                   </VBox>
                   <Button fx:id="btnEnregistrer" layoutX="178.0" layoutY="236.0" mnemonicParsing="false" onAction="#clickEnregistrer" text="Enregistrer" />
+                  <Label fx:id="lblAdded" layoutX="136.0" layoutY="272.0" text="La tâche a bien été ajoutée." textFill="#00ff2b" visible="false">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblError" layoutX="114.0" layoutY="272.0" text="Erreur, la tâche n'a pas été ajoutée." textFill="#f80042" visible="false">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
         </items>
       </SplitPane>

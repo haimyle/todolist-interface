@@ -4,26 +4,26 @@ public class User {
     private int idUser;
     private String nom;
     private String prenom;
-    private String email;
-    private String password;
+    private String mail;
+    private String mdp;
     private boolean estAdmin;
 
     public User() {
     }
 
-    public User(String nom, String prenom, String email, String password) {
+    public User(String nom, String prenom, String mail, String mdp) {
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
-        this.password = password;
+        this.mail = mail;
+        this.mdp = mdp;
     }
 
-    public User(int idUser, String nom, String prenom, String email, String password, boolean estAdmin) {
+    public User(int idUser, String nom, String prenom, String mail, String mdp, boolean estAdmin) {
         this.idUser = idUser;
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
-        this.password = password;
+        this.mail = mail;
+        this.mdp = mdp;
         this.estAdmin = estAdmin;
     }
 
@@ -51,20 +51,20 @@ public class User {
         this.prenom = prenom;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String email) {
+        this.mail = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMdp() {
+        return mdp;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
     }
 
     public boolean isEstAdmin() {
@@ -81,8 +81,8 @@ public class User {
                 "Id :" + idUser +
                 ", Nom : '" + nom + '\'' +
                 ", Prenom : '" + prenom + '\'' +
-                ", Email : " + email + '\'' +
-                ", Password :'" + password + '\'' +
+                ", Mail : " + mail + '\'' +
+                ", Mot de passe :'" + mdp + '\'' +
                 ", Admin :" + estAdmin +
                 '}';
     }

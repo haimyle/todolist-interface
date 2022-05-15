@@ -49,18 +49,33 @@ public class CreateListController {
     private TextField tfNomListe;
 
     @FXML
-    void clickArchives(ActionEvent event) {
-
-    }
-
-    @FXML
     void clickCancel(ActionEvent event) {
 
     }
 
     @FXML
-    void clickCorbeille(ActionEvent event) {
+    void clickArchives(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
+    }
 
+    @FXML
+    void clickTache(ActionEvent event) {
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
+    }
+
+    @FXML
+    void clickCorbeille(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
@@ -69,12 +84,7 @@ public class CreateListController {
     }
 
     @FXML
-    void clickTaches(ActionEvent event) {
-        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
-    }
-
-    @FXML
-    void clickType(ActionEvent event) {
+    void clickType(ActionEvent event) throws SQLException {
         StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 

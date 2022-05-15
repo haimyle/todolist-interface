@@ -55,7 +55,12 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void clickArchives(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
@@ -65,7 +70,12 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void clickCorbeille(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
@@ -109,8 +119,15 @@ public class CreateTypeController implements Initializable {
     }
 
     @FXML
-    void clickSave(ActionEvent event) {
-
+    void clickSave(ActionEvent event) throws SQLException {
+        TypeRepository typee = new TypeRepository();
+        if (comboBoxAttacher.getValue() != null){
+            typee.createTypeWithSousType(tfNomType.getText(), user, comboBoxAttacher.getValue().getIdType());
+        }
+        else {
+            typee.createTypeWithoutSousType(tfNomType.getText(), user);
+        }
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
     @FXML
@@ -125,7 +142,7 @@ public class CreateTypeController implements Initializable {
 
     @FXML
     void clickRead(ActionEvent event) {
-        StartApplication.changeScene("/appli/type/type-view.fxml", new TypeViewController(this.user),"To-Do List - Voir les catégories");
+        StartApplication.changeScene("/appli/type/type-view.fxml", new TypeViewController(this.user),"To-Do List - Supprimer une catégorie");
     }
 
     ObservableList <Type>types;

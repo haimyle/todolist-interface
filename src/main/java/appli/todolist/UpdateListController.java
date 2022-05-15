@@ -1,6 +1,8 @@
 package appli.todolist;
 
 import appli.StartApplication;
+import appli.tache.CreateTacheController;
+import appli.type.CreateTypeController;
 import appli.user.AdminController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,23 +110,38 @@ public class UpdateListController implements Initializable {
     }
 
     @FXML
-    void clickShowArchive(MouseEvent event) {
-
+    void clickArchives(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
-    void clickShowCategories(MouseEvent event) {
-
+    void clickTaches(ActionEvent event) {
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML
-    void clickShowCorbeille(MouseEvent event) {
-
+    void clickCorbeille(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
-    void clickshowListes(MouseEvent event) {
+    void clickListes(ActionEvent event) {
+        StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(this.user),"To-Do List - Listes");
+    }
 
+    @FXML
+    void clickType(ActionEvent event) throws SQLException {
+        StartApplication.changeScene("/appli/type/create-type-view.fxml", new CreateTypeController(this.user),"To-Do List - Créer une catégorie");
     }
 
     @Override

@@ -102,6 +102,12 @@ public class TodolistController implements Initializable {
     }
 
     @FXML
+    void clickConsulter(ActionEvent event) {
+        System.out.println(this.selectedList.getIdListe());
+        StartApplication.changeScene("/appli/tache/tache-view.fxml", new TacheViewController(this.user, this.selectedList), "To-Do List - Taches");
+    }
+
+    @FXML
     void onActionToDoListAPropos(ActionEvent event) {
 
     }
@@ -119,23 +125,27 @@ public class TodolistController implements Initializable {
 
     @FXML
     void clickArchives(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickConsulter(ActionEvent event) {
-        System.out.println(this.selectedList.getIdListe());
-        StartApplication.changeScene("/appli/tache/tache-view.fxml", new TacheViewController(this.user, this.selectedList), "To-Do List - Taches");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML
     void clickTache(ActionEvent event) {
-        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "Créer une tâche");
+        StartApplication.changeScene("/appli/tache/create-tache-view.fxml", new CreateTacheController(this.user), "To-Do List - Créer une tâche");
     }
 
     @FXML
     void clickCorbeille(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bientôt..");
+        alert.setHeaderText("Fonctionnalité non disponible");
+        String s ="Cette fonctionnalité n'est pas encore disponible.";
+        alert.setContentText(s);
+        alert.show();
     }
 
     @FXML

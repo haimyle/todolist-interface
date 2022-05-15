@@ -7,8 +7,9 @@ public class Tache {
     private String nomTache;
     private boolean terminee;
     private Date deadline;
-    private int retfType;
+    private int refType;
     private int refListe;
+    private String nomType;
 
     public Tache() {
     }
@@ -45,12 +46,12 @@ public class Tache {
         this.deadline = deadline;
     }
 
-    public int getRetfType() {
-        return retfType;
+    public int getRefType() {
+        return refType;
     }
 
-    public void setRetfType(int retfType) {
-        this.retfType = retfType;
+    public void setRefType(int refType) {
+        this.refType = refType;
     }
 
     public int getRefListe() {
@@ -61,8 +62,16 @@ public class Tache {
         this.refListe = refListe;
     }
 
+    public String getNomType() {
+        return nomType;
+    }
+
+    public void setNomType(String nomType) {
+        this.nomType = nomType;
+    }
+
     @Override
     public String toString() {
-        return idTache + " . " + nomTache + " (deadline := " + deadline + " )";
+        return idTache + " . " + nomTache + " (deadline : " + deadline + " )";
     }
 }

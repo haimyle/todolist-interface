@@ -45,7 +45,7 @@ public class TacheRepository {
     public ArrayList<Tache> readTache (Liste liste) throws SQLException {
         ArrayList<Tache> taches = new ArrayList<Tache>();
         Tache tache;
-        String sql = "SELECT * FROM tache WHERE ref_liste =? AND terminee = 0";
+        String sql = "SELECT * FROM tache INNER JOIN type ON tache.ref_type=type.id_type WHERE ref_liste =? AND terminee = 0";
         PreparedStatement req = cnx.getConnection().prepareStatement(sql);
         req.setInt(1,liste.getIdListe());
         ResultSet res = req.executeQuery();
@@ -54,7 +54,8 @@ public class TacheRepository {
             tache.setIdTache(res.getInt("id_tache"));
             tache.setNomTache(res.getString("nom_tache"));
             tache.setDeadline(res.getDate("deadline"));
-            tache.setRetfType(res.getInt("ref_type"));
+            tache.setRefType(res.getInt("ref_type"));
+            tache.setNomType(res.getString("nom_type"));
             taches.add(tache);
         }
 

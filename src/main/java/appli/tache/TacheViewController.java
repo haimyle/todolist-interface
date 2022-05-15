@@ -117,7 +117,7 @@ public class TacheViewController implements Initializable {
 
     @FXML
     void clickModifier(ActionEvent event) {
-
+        StartApplication.changeScene("/appli/tache/update-tache-view.fxml", new TacheViewController(this.user, this.liste),"To-Do List - Modifier un Tache" );
     }
 
     @FXML

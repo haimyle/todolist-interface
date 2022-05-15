@@ -15,11 +15,21 @@ public class TacheRepository {
         this.cnx = new Bdd();
     }
 
-    public void deleteTache(User user, Liste liste) throws SQLException {
-        String sql = "DELETE FROM tache WHERE ref_liste = ? AND ref_type = ?";
+    public void updateTache (Tache tache) throws SQLException {
+        String sql = "UPDATE tache SET nom_tache=? deadline=? ref_type=?, ref_liste=? WHERE id_liste=?";
         PreparedStatement req = cnx.getConnection().prepareStatement(sql);
-        req.setInt(1,liste.getIdListe());
-        req.setInt(2, user.getIdUser());
+        req.setString(1,tache.getNomTache());
+        req.setDate(2,tache.getDeadline());
+        req.setInt(3,tache.getRefType());
+        req.setInt(4,tache.getRefListe());
+        req.setInt(5,tache.getIdTache());
+        req.executeUpdate();
+    }
+
+    public void deleteTache(Tache tache) throws SQLException {
+        String sql = "DELETE FROM tache WHERE id_tache=?";
+        PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+        req.setInt(1,tache.getIdTache());
         req.executeUpdate();
     }
 

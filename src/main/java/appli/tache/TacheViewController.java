@@ -42,7 +42,7 @@ public class TacheViewController {
     private TableColumn<Tache, String> colTache;
 
     @FXML
-    //private TableColumn<, ?> colType;
+    private TableColumn<Tache, Integer> colType;
 
     @FXML
     private Label lbNomListe;

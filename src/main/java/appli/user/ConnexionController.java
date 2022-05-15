@@ -55,8 +55,9 @@ public class ConnexionController {
         User user = userRepository.connexion(tfEmail.getText(), pfPassword.getText());
         if (user != null) {
             StartApplication.changeScene("/appli/todolist/todolist-view.fxml", new TodolistController(user),"To-Do List - Application");
-        } else {
-            lbMessage.setText("Erreur");
+        }
+        else {
+            lbMessage.setText("Erreur, veuillez ressayer.");
         }
     }
 }

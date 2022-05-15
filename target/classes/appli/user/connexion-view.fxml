@@ -51,6 +51,6 @@
             <Font name="Berlin Sans FB" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="lbMessage" alignment="CENTER" layoutX="162.0" layoutY="232.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label fx:id="lbMessage" alignment="CENTER" layoutX="162.0" layoutY="232.0" textFill="#e10000" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

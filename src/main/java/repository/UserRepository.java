@@ -50,6 +50,9 @@ public class UserRepository {
                 user.setEstAdmin(res.getBoolean("est_admin"));
                 user = new User(user.getIdUser(),user.getNom(),user.getPrenom(),user.getMail(), user.getMdp(), user.isEstAdmin());
             }
+            else{
+                return null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

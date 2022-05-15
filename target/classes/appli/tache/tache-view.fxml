@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="600.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Compte">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Modifier" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <SplitPane dividerPositions="0.2751116071428572" layoutY="61.0" prefHeight="340.0" prefWidth="600.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="16.0">
+                            <children>
+                                <Button fx:id="btnTache" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickTache" prefHeight="25.0" prefWidth="187.0" style="-fx-background-color: transparent;" text="Tâches" />
+                                <Button fx:id="btnListes" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickListes" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparent;" text="Listes">
+                                    <VBox.margin>
+                                        <Insets />
+                                    </VBox.margin>
+                                </Button>
+                                <Button fx:id="btnType" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickType" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent;" text="Catégories" />
+                                <Button fx:id="btnArchives" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickArchives" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: transparent;" text="Archives" />
+                                <Button fx:id="btnCorbeille" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#clickCorbeille" prefHeight="25.0" prefWidth="197.0" style="-fx-background-color: transparent;" text="Corbeille" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="430.0">
+                    <children>
+                        <Label fx:id="lbNomListe" layoutX="14.0" layoutY="20.0" prefHeight="17.0" prefWidth="361.0" />
+                        <Button fx:id="btnSupprimer" alignment="CENTER" contentDisplay="CENTER" layoutX="344.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickSupprimer" prefHeight="25.0" prefWidth="75.0" text="Supprimer" />
+                        <Button fx:id="btnModifier" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickModifier" prefHeight="25.0" prefWidth="75.0" text="Modifier" />
+                        <Button fx:id="btnCreateTache" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickCreateTache" prefHeight="25.0" prefWidth="29.0" text="+">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                  <TableView layoutX="10.0" layoutY="50.0" prefHeight="238.0" prefWidth="410.0">
+                    <columns>
+                      <TableColumn fx:id="colTache" prefWidth="169.33330821990967" text="Tâche" />
+                      <TableColumn fx:id="colType" minWidth="7.3333740234375" prefWidth="103.33338928222656" text="Type" />
+                        <TableColumn fx:id="colDeadline" minWidth="0.0" prefWidth="138.66668701171875" text="Deadline" />
+                    </columns>
+                  </TableView>
+                    </children></AnchorPane>
+            </items>
+        </SplitPane>
+        <ToolBar layoutY="26.0" prefHeight="36.0" prefWidth="600.0" />
+    </children>
+</AnchorPane>

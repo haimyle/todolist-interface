@@ -1,5 +1,18 @@
 package appli.tache;
 
+<<<<<<< HEAD
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import modele.Tache;
+
+import java.sql.Date;
+
+public class TacheViewController {
+
+=======
 import appli.StartApplication;
 import appli.user.AdminController;
 import javafx.event.ActionEvent;
@@ -18,6 +31,7 @@ public class TacheViewController {
 
     private User user;
 
+>>>>>>> 176b4943cecbcca51abf946a51a2c1fb99426581
     @FXML
     private Button btnArchives;
 
@@ -43,6 +57,15 @@ public class TacheViewController {
     private Button btnType;
 
     @FXML
+<<<<<<< HEAD
+    private TableColumn<Tache, Date> colDeadline;
+
+    @FXML
+    private TableColumn<Tache, String> colTache;
+
+    @FXML
+    private TableColumn<Tache, Integer> colType;
+=======
     private TableColumn<?, ?> colDeadline;
 
     @FXML
@@ -50,12 +73,16 @@ public class TacheViewController {
 
     @FXML
     private TableColumn<?, ?> colType;
+>>>>>>> 176b4943cecbcca51abf946a51a2c1fb99426581
 
     @FXML
     private Label lbNomListe;
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 176b4943cecbcca51abf946a51a2c1fb99426581
     @FXML
     void clickArchives(ActionEvent event) {
 
@@ -96,6 +123,8 @@ public class TacheViewController {
 
     }
 
+<<<<<<< HEAD
+=======
     @FXML
     void onActionCompteAdmin(ActionEvent event) {
         System.out.println(user.toString());
@@ -128,4 +157,6 @@ public class TacheViewController {
 
     }
 
+>>>>>>> 176b4943cecbcca51abf946a51a2c1fb99426581
 }
+

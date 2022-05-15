@@ -6,6 +6,7 @@ import modele.Tache;
 import modele.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class TacheRepository {
     private Bdd cnx;
@@ -39,5 +40,24 @@ public class TacheRepository {
             System.out.println("Erreur");
         }
         return tache;
+    }
+
+    public ArrayList<Tache> readTache (Liste liste) throws SQLException {
+        ArrayList<Tache> taches = new ArrayList<Tache>();
+        Tache tache;
+        String sql = "SELECT * FROM tache WHERE ref_liste =? AND terminee = 0";
+        PreparedStatement req = cnx.getConnection().prepareStatement(sql);
+        req.setInt(1,liste.getIdListe());
+        ResultSet res = req.executeQuery();
+        while (res.next()){
+            tache = new Tache();
+            tache.setIdTache(res.getInt("id_tache"));
+            tache.setNomTache(res.getString("nom_tache"));
+            tache.setDeadline(res.getDate("deadline"));
+            tache.setRetfType(res.getInt("ref_type"));
+            taches.add(tache);
+        }
+
+        return taches;
     }
 }

@@ -3,8 +3,10 @@ package appli.todolist;
 import appli.StartApplication;
 import appli.tache.CreateTacheController;
 import appli.type.CreateTypeController;
+import appli.user.AdminController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -85,6 +87,36 @@ public class CreateListController {
         } else {
             lbMessage.setText("Erreur");
         }
+    }
+
+    @FXML
+    void onActionCompteAdmin(ActionEvent event) {
+        System.out.println(user.toString());
+        if(this.user.isEstAdmin()){
+            StartApplication.changeScene("/appli/user/admin-view.fxml", new AdminController(user), "To-Do List - Admin");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Admin");
+            alert.setHeaderText("Vous n'avez pas les permissions nécessaires !");
+            alert.setContentText(this.user.getPrenom()+" vous n'êtes pas administrateur, vous ne pouvez pas gérer les utilisateurs.");
+            alert.show();
+        }
+    }
+
+    @FXML
+    void onActionCompteModifier(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListAPropos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListDocumentation(ActionEvent event) {
+
     }
 
 

@@ -72,7 +72,6 @@ public class TodolistController implements Initializable {
 
         }
     }
-
     @FXML
     void onActionCompteAdmin(ActionEvent event) {
         System.out.println(user.toString());
@@ -86,6 +85,21 @@ public class TodolistController implements Initializable {
             alert.setContentText(this.user.getPrenom()+" vous n'êtes pas administrateur, vous ne pouvez pas gérer les utilisateurs.");
             alert.show();
         }
+    }
+
+    @FXML
+    void onActionCompteModifier(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListAPropos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onActionToDoListDocumentation(ActionEvent event) {
+
     }
 
     @FXML

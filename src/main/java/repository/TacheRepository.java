@@ -15,15 +15,20 @@ public class TacheRepository {
         this.cnx = new Bdd();
     }
 
-    public void updateTache (Tache tache) throws SQLException {
+    public void updateTache (String titre, Date deadline, int ref_type, int ref_liste, int id_tache) throws SQLException {
         String sql = "UPDATE tache SET nom_tache=? deadline=? ref_type=?, ref_liste=? WHERE id_liste=?";
         PreparedStatement req = cnx.getConnection().prepareStatement(sql);
-        req.setString(1,tache.getNomTache());
-        req.setDate(2,tache.getDeadline());
-        req.setInt(3,tache.getRefType());
-        req.setInt(4,tache.getRefListe());
-        req.setInt(5,tache.getIdTache());
+        req.setString(1,titre);
+        req.setDate(2,deadline);
+        req.setInt(3,ref_type);
+        req.setInt(4,ref_liste);
+        req.setInt(5,id_tache);
         req.executeUpdate();
+        if (req.executeUpdate()>0){
+            System.out.println("Updated");
+        }else {
+            System.out.println("Erreur");
+        }
     }
 
     public void deleteTache(Tache tache) throws SQLException {

@@ -161,17 +161,16 @@ public class TypeViewController implements Initializable {
         try {
             typeRepository = new TypeRepository();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         this.btnDelete.setVisible(false);
-
         try {
-            observableList.addAll(typeRepository.readType(user));
-            System.out.println(observableList);
-
+            observableList.addAll(typeRepository.readType(this.user));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(observableList);
+
         colType.setCellValueFactory(new PropertyValueFactory<Type, String>("nomType"));
         colParent.setCellValueFactory(new PropertyValueFactory<Type, Integer>("refType"));
         tbType.getItems().addAll(observableList);

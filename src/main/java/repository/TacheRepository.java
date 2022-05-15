@@ -16,7 +16,7 @@ public class TacheRepository {
     }
 
     public void updateTache (String titre, Date deadline, int ref_type, int ref_liste, int id_tache) throws SQLException {
-        String sql = "UPDATE tache SET nom_tache=? deadline=? ref_type=?, ref_liste=? WHERE id_liste=?";
+        String sql = "UPDATE tache SET nom_tache=? deadline=? ref_type=?, ref_liste=? WHERE id_tache=?";
         PreparedStatement req = cnx.getConnection().prepareStatement(sql);
         req.setString(1,titre);
         req.setDate(2,deadline);

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="380.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Création">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Nom :" />
+        <TextField fx:id="fldNom" />
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Prenom : " />
+        <TextField fx:id="fldPrenom" />
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mail : " />
+        <TextField fx:id="fldMail" />
+        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Mot de passe :" />
+        <PasswordField fx:id="fldMotDePasse" />
+        <Label alignment="CENTER" layoutX="10.0" layoutY="78.0" maxWidth="1.7976931348623157E308" text="Confirmez le mot de passe :" />
+        <PasswordField fx:id="fldConfirmer" />
+      <RadioButton fx:id="rbtnUser" mnemonicParsing="false" selected="true" text="Utilisateur">
+         <toggleGroup>
+            <ToggleGroup fx:id="role" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rbtnAdmin" mnemonicParsing="false" text="Admin" toggleGroup="$role" />
+        <Label fx:id="lblErreur" alignment="CENTER" maxWidth="1.7976931348623157E308" textFill="RED" />
+        <Button mnemonicParsing="false" onAction="#SaveAction" text="Sauvegarder" />
+        <Button mnemonicParsing="false" onAction="#backAction" text="Retour" />
+    </children>
+    <padding>
+        <Insets left="20.0" right="20.0" />
+    </padding>
+</VBox>

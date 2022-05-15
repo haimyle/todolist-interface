@@ -64,7 +64,7 @@ public class TacheViewController implements Initializable {
     private TableColumn<Tache, String> colTache;
 
     @FXML
-    private TableColumn<Tache, Integer> colType;
+    private TableColumn<Tache, String> colType;
 
     @FXML
     private TableView<Tache> tbTache;
@@ -167,9 +167,9 @@ public class TacheViewController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        colTache.setCellValueFactory(new PropertyValueFactory<Tache,String>("nom_tache"));
+        colTache.setCellValueFactory(new PropertyValueFactory<Tache,String>("nomTache"));
         colDeadline.setCellValueFactory(new PropertyValueFactory<Tache,Date>("deadline"));
-        colType.setCellValueFactory(new PropertyValueFactory<Tache,Integer>("ref_type"));
+        colType.setCellValueFactory(new PropertyValueFactory<Tache,String>("nomType"));
         tbTache.setItems(observableList);
 
 

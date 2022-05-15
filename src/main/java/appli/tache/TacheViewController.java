@@ -3,6 +3,8 @@ package appli.tache;
 
 import appli.StartApplication;
 import appli.user.AdminController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import modele.Liste;
 import modele.Tache;
 import modele.User;
@@ -23,6 +26,7 @@ import java.util.ResourceBundle;
 public class TacheViewController implements Initializable {
     private User user;
     private Liste liste;
+    private Tache selectedTache;
 
     public TacheViewController(User user, Liste liste) {
         this.user = user;
@@ -73,6 +77,16 @@ public class TacheViewController implements Initializable {
 
     @FXML
     private Label lbNomListe;
+
+    void onSelectedRow(MouseEvent event) {
+        System.out.println("Selected");
+        this.selectedTache = tbTache.getSelectionModel().getSelectedItem();
+        if (selectedTache != null){
+            btnModifier.setVisible(true);
+            btnSupprimer.setVisible(true);
+            btnTerminer.setVisible(true);
+        }
+    }
 
 
     @FXML
@@ -167,12 +181,10 @@ public class TacheViewController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        colTache.setCellValueFactory(new PropertyValueFactory<Tache,String>("nomTache"));
-        colDeadline.setCellValueFactory(new PropertyValueFactory<Tache,Date>("deadline"));
-        colType.setCellValueFactory(new PropertyValueFactory<Tache,String>("nomType"));
-        tbTache.setItems(observableList);
-
-
+        colTache.setCellValueFactory(new PropertyValueFactory<Tache, String>("nomTache"));
+        colDeadline.setCellValueFactory(new PropertyValueFactory<Tache, Date>("deadline"));
+        colType.setCellValueFactory(new PropertyValueFactory<Tache, String>("nomType"));
+        tbTache.getItems().addAll(observableList);
     }
 }
 
